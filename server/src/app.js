@@ -1,5 +1,5 @@
-const express = require('express');
-const cors = require('cors');
+const express = require("express");
+const cors = require("cors");
 
 const app = express();
 
@@ -7,18 +7,22 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Routes
+const productRoutes = require("./routes/productRoutes");
+app.use("/api/products", productRoutes);
+
 // Health Check Route
-app.get('/api/health', (req, res) => {
+app.get("/api/health", (req, res) => {
   res.json({
-    status: 'ok',
-    message: 'ShopSmart Backend is running',
-    timestamp: new Date().toISOString()
+    status: "ok",
+    message: "ApnaBazaar Backend is running",
+    timestamp: new Date().toISOString(),
   });
 });
 
-// Root Route (optional, just to show something)
-app.get('/', (req, res) => {
-  res.send('ShopSmart Backend Service');
+// Root Route
+app.get("/", (req, res) => {
+  res.send("ApnaBazaar Backend Service");
 });
 
 module.exports = app;
