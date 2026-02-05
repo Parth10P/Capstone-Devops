@@ -1,38 +1,165 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap');
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer base {
+  :root {
+    --background: 30 30% 97%;
+    --foreground: 20 20% 12%;
+
+    --card: 30 25% 99%;
+    --card-foreground: 20 20% 12%;
+
+    --popover: 30 25% 99%;
+    --popover-foreground: 20 20% 12%;
+
+    --primary: 28 90% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 174 55% 32%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 30 15% 92%;
+    --muted-foreground: 20 10% 45%;
+
+    --accent: 42 90% 55%;
+    --accent-foreground: 20 20% 12%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 15% 88%;
+    --input: 30 15% 88%;
+    --ring: 28 90% 55%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 30 20% 96%;
+    --sidebar-foreground: 20 15% 25%;
+    --sidebar-primary: 28 90% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 30 15% 92%;
+    --sidebar-accent-foreground: 20 15% 25%;
+    --sidebar-border: 30 15% 88%;
+    --sidebar-ring: 28 90% 55%;
+
+    /* Custom ApnaBazaar tokens */
+    --saffron: 28 90% 55%;
+    --saffron-light: 28 85% 70%;
+    --saffron-dark: 28 85% 42%;
+    --teal: 174 55% 32%;
+    --teal-light: 174 45% 50%;
+    --teal-dark: 174 60% 22%;
+    --gold: 42 90% 55%;
+    --gold-light: 42 80% 70%;
+    --terracotta: 12 60% 50%;
+    --cream: 35 40% 95%;
+    --warm-white: 30 30% 97%;
+
+    --gradient-hero: linear-gradient(135deg, hsl(28 90% 55%), hsl(42 90% 55%));
+    --gradient-teal: linear-gradient(135deg, hsl(174 55% 32%), hsl(174 45% 50%));
+    --gradient-warm: linear-gradient(180deg, hsl(30 30% 97%), hsl(35 40% 95%));
+    --shadow-warm: 0 4px 20px -4px hsl(28 90% 55% / 0.2);
+    --shadow-card: 0 2px 12px -2px hsl(20 20% 12% / 0.08);
+    --shadow-card-hover: 0 8px 30px -6px hsl(20 20% 12% / 0.15);
+  }
+
+  .dark {
+    --background: 20 20% 8%;
+    --foreground: 30 15% 92%;
+    --card: 20 18% 12%;
+    --card-foreground: 30 15% 92%;
+    --popover: 20 18% 12%;
+    --popover-foreground: 30 15% 92%;
+    --primary: 28 85% 58%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 174 45% 40%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 20 15% 18%;
+    --muted-foreground: 30 10% 60%;
+    --accent: 42 80% 55%;
+    --accent-foreground: 20 20% 8%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 20 15% 20%;
+    --input: 20 15% 20%;
+    --ring: 28 85% 58%;
+    --sidebar-background: 20 18% 10%;
+    --sidebar-foreground: 30 10% 85%;
+    --sidebar-primary: 28 85% 58%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 20 15% 16%;
+    --sidebar-accent-foreground: 30 10% 85%;
+    --sidebar-border: 20 15% 20%;
+    --sidebar-ring: 28 85% 58%;
+  }
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Poppins', 'Noto Sans Devanagari', system-ui, sans-serif;
+  }
 }
 
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@layer utilities {
+  .text-gradient-saffron {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-hero);
+  }
+  .bg-gradient-hero {
+    background-image: var(--gradient-hero);
+  }
+  .bg-gradient-teal {
+    background-image: var(--gradient-teal);
+  }
+  .shadow-warm {
+    box-shadow: var(--shadow-warm);
+  }
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  .shadow-card-hover {
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  /* Simple mode overrides */
+  .mode-simple {
+    font-size: 1.15rem;
+    line-height: 1.8;
+  }
+  .mode-simple button,
+  .mode-simple a {
+    min-height: 56px;
+    min-width: 56px;
+    font-size: 1.1rem;
+  }
+
+  /* Visual mode */
+  .mode-visual .hide-in-visual {
+    @apply sr-only;
+  }
 }
 
-.card {
-  padding: 2em;
-}
-
-.status-ok {
-  color: #646cff;
-  font-weight: bold;
+@layer components {
+  .bazaar-card {
+    @apply rounded-xl bg-card border border-border shadow-card transition-all duration-300;
+  }
+  .bazaar-card:hover {
+    @apply shadow-card-hover -translate-y-1;
+  }
+  .bazaar-btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-primary text-primary-foreground font-semibold px-6 py-3 transition-all duration-200 hover:opacity-90 active:scale-[0.97];
+  }
+  .bazaar-btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-secondary text-secondary-foreground font-semibold px-6 py-3 transition-all duration-200 hover:opacity-90 active:scale-[0.97];
+  }
+  .bazaar-btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border-2 border-primary text-primary font-semibold px-6 py-3 transition-all duration-200 hover:bg-primary hover:text-primary-foreground active:scale-[0.97];
+  }
 }
