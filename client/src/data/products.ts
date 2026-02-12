@@ -1,0 +1,191 @@
+export interface Product {
+  id: string;
+  name: { en: string; hi: string };
+  price: number;
+  originalPrice?: number;
+  image: string;
+  category: string;
+  seller: { en: string; hi: string };
+  rating: number;
+  reviews: number;
+}
+
+export interface Category {
+  id: string;
+  name: { en: string; hi: string };
+  icon: string;
+  color: string;
+}
+
+export const categories: Category[] = [
+  { id: "clothing", name: { en: "Clothing", hi: "कपड़े" }, icon: "👗", color: "bg-primary/10" },
+  { id: "electronics", name: { en: "Electronics", hi: "इलेक्ट्रॉनिक्स" }, icon: "📱", color: "bg-secondary/10" },
+  { id: "grocery", name: { en: "Grocery", hi: "किराना" }, icon: "🛒", color: "bg-accent/10" },
+  { id: "handicrafts", name: { en: "Handicrafts", hi: "हस्तशिल्प" }, icon: "🏺", color: "bg-terracotta/10" },
+  { id: "beauty", name: { en: "Beauty", hi: "सौंदर्य" }, icon: "💄", color: "bg-primary/10" },
+  { id: "home", name: { en: "Home & Kitchen", hi: "घर और रसोई" }, icon: "🏠", color: "bg-secondary/10" },
+  { id: "books", name: { en: "Books", hi: "किताबें" }, icon: "📚", color: "bg-accent/10" },
+  { id: "toys", name: { en: "Toys & Games", hi: "खिलौने" }, icon: "🧸", color: "bg-gold/10" },
+];
+
+export const products: Product[] = [
+  {
+    id: "1",
+    name: { en: "Hand-woven Pashmina Shawl", hi: "हाथ से बुनी पश्मीना शॉल" },
+    price: 2499,
+    originalPrice: 4999,
+    image: "https://images.unsplash.com/photo-1601244005535-a48d52d3a68b?w=400&h=400&fit=crop",
+    category: "clothing",
+    seller: { en: "Kashmir Crafts", hi: "कश्मीर क्राफ्ट्स" },
+    rating: 4.8,
+    reviews: 234,
+  },
+  {
+    id: "2",
+    name: { en: "Brass Diya Set (Pack of 12)", hi: "पीतल दिया सेट (12 का पैक)" },
+    price: 599,
+    originalPrice: 999,
+    image: "https://images.unsplash.com/photo-1606293926249-ed22e446da0a?w=400&h=400&fit=crop",
+    category: "handicrafts",
+    seller: { en: "Moradabad Metalworks", hi: "मुरादाबाद मेटलवर्क्स" },
+    rating: 4.6,
+    reviews: 189,
+  },
+  {
+    id: "3",
+    name: { en: "Organic Turmeric Powder (500g)", hi: "जैविक हल्दी पाउडर (500 ग्राम)" },
+    price: 199,
+    image: "https://images.unsplash.com/photo-1615485500704-8e990f9900f7?w=400&h=400&fit=crop",
+    category: "grocery",
+    seller: { en: "Farm Fresh India", hi: "फार्म फ्रेश इंडिया" },
+    rating: 4.9,
+    reviews: 567,
+  },
+  {
+    id: "4",
+    name: { en: "Block Print Cotton Kurti", hi: "ब्लॉक प्रिंट कॉटन कुर्ती" },
+    price: 899,
+    originalPrice: 1499,
+    image: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=400&h=400&fit=crop",
+    category: "clothing",
+    seller: { en: "Jaipur Textiles", hi: "जयपुर टेक्सटाइल्स" },
+    rating: 4.5,
+    reviews: 312,
+  },
+  {
+    id: "5",
+    name: { en: "Wireless Bluetooth Earbuds", hi: "वायरलेस ब्लूटूथ ईयरबड्स" },
+    price: 1299,
+    originalPrice: 2999,
+    image: "https://images.unsplash.com/photo-1590658268037-6bf12f032f55?w=400&h=400&fit=crop",
+    category: "electronics",
+    seller: { en: "TechMart India", hi: "टेकमार्ट इंडिया" },
+    rating: 4.3,
+    reviews: 891,
+  },
+  {
+    id: "6",
+    name: { en: "Madhubani Painting Frame", hi: "मधुबनी पेंटिंग फ्रेम" },
+    price: 1599,
+    image: "https://images.unsplash.com/photo-1582738411706-bfc8e691d1c2?w=400&h=400&fit=crop",
+    category: "handicrafts",
+    seller: { en: "Bihar Art House", hi: "बिहार आर्ट हाउस" },
+    rating: 4.7,
+    reviews: 156,
+  },
+  {
+    id: "7",
+    name: { en: "Ayurvedic Hair Oil (200ml)", hi: "आयुर्वेदिक हेयर ऑइल (200ml)" },
+    price: 349,
+    originalPrice: 499,
+    image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=400&h=400&fit=crop",
+    category: "beauty",
+    seller: { en: "Herbal Valley", hi: "हर्बल वैली" },
+    rating: 4.4,
+    reviews: 423,
+  },
+  {
+    id: "8",
+    name: { en: "Terracotta Dinner Set", hi: "टेराकोटा डिनर सेट" },
+    price: 1899,
+    originalPrice: 2999,
+    image: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=400&h=400&fit=crop",
+    category: "home",
+    seller: { en: "Clay Creations", hi: "क्ले क्रिएशन्स" },
+    rating: 4.6,
+    reviews: 98,
+  },
+];
+
+export const translations = {
+  en: {
+    brand: "ApnaBazaar",
+    tagline: "Everyone's Marketplace",
+    heroTitle: "Your Neighborhood Bazaar, Now Online",
+    heroSubtitle: "Discover unique products from local sellers across India. Shopping made simple for everyone.",
+    shopNow: "Shop Now",
+    exploreCategories: "Explore Categories",
+    categories: "Shop by Category",
+    trending: "Trending Products",
+    featured: "Featured for You",
+    addToCart: "Add to Cart",
+    viewAll: "View All",
+    search: "Search products...",
+    modes: "Choose Your Mode",
+    simple: "Simple",
+    visual: "Visual",
+    pro: "Pro",
+    simpleDesc: "Large text, easy navigation",
+    visualDesc: "Image-focused browsing",
+    proDesc: "Full features & filters",
+    off: "OFF",
+    reviews: "reviews",
+    seller: "Seller",
+    madeInIndia: "Made in India 🇮🇳",
+    supportLocal: "Support Local Sellers",
+    freeDelivery: "Free Delivery above ₹499",
+    easyReturns: "Easy 7-day Returns",
+    securePayment: "Secure Payment",
+    home: "Home",
+    products: "Products",
+    sellers: "Sellers",
+    cart: "Cart",
+    account: "Account",
+    help: "Help",
+  },
+  hi: {
+    brand: "अपना बाज़ार",
+    tagline: "सबका बाज़ार",
+    heroTitle: "आपका पड़ोस का बाज़ार, अब ऑनलाइन",
+    heroSubtitle: "भारत भर के स्थानीय विक्रेताओं के अनूठे उत्पाद खोजें। सबके लिए आसान खरीदारी।",
+    shopNow: "अभी खरीदें",
+    exploreCategories: "श्रेणियाँ देखें",
+    categories: "श्रेणी से खरीदें",
+    trending: "ट्रेंडिंग उत्पाद",
+    featured: "आपके लिए चुने गए",
+    addToCart: "कार्ट में डालें",
+    viewAll: "सभी देखें",
+    search: "उत्पाद खोजें...",
+    modes: "अपना मोड चुनें",
+    simple: "सरल",
+    visual: "विज़ुअल",
+    pro: "प्रो",
+    simpleDesc: "बड़ा टेक्स्ट, आसान नेविगेशन",
+    visualDesc: "तस्वीरों से ब्राउज़ करें",
+    proDesc: "सभी सुविधाएँ और फ़िल्टर",
+    off: "छूट",
+    reviews: "समीक्षाएँ",
+    seller: "विक्रेता",
+    madeInIndia: "मेड इन इंडिया 🇮🇳",
+    supportLocal: "स्थानीय विक्रेताओं का समर्थन करें",
+    freeDelivery: "₹499 से ऊपर मुफ़्त डिलीवरी",
+    easyReturns: "7 दिन की आसान वापसी",
+    securePayment: "सुरक्षित भुगतान",
+    home: "होम",
+    products: "उत्पाद",
+    sellers: "विक्रेता",
+    cart: "कार्ट",
+    account: "खाता",
+    help: "मदद",
+  },
+};
