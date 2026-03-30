@@ -4,12 +4,11 @@ echo "Setting up the project..."
 
 cd server
 npm i
+npm start
 
 cd ../client
 npm i
-
-cd ..
-npm start
+npm run dev
 
 
 echo "Project setup complete!"

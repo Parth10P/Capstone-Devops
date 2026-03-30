@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <rect width="400" height="300" fill="#f1f5f9"/>
+  <path d="M200 120c-20 0-36 16-36 36s16 36 36 36 36-16 36-36-16-36-36-36zm0 60c-13.2 0-24-10.8-24-24s10.8-24 24-24 24 10.8 24 24-10.8 24-24 24z" fill="#94a3b8"/>
+  <circle cx="180" cy="150" r="8" fill="#94a3b8"/>
+  <path d="M140 220h120v-10c0-16.5-13.5-30-30-30h-60c-16.5 0-30 13.5-30 30v10z" fill="#cbd5e1"/>
+  <text x="200" y="260" text-anchor="middle" fill="#64748b" font-size="14" font-family="system-ui">No Image Available</text>
+</svg>
