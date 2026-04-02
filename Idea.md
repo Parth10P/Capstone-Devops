@@ -25,11 +25,6 @@ The core concept of ApnaBazaar is **Radical Inclusion**. It is built on the phil
 
 ## Key Features
 
-- **Multi-UI Modes:**
-  - **Simple Mode:** Large buttons, high contrast, and minimal text for first-time users.
-  - **Visual Mode:** Heavy reliance on product imagery and icons rather than text.
-  - **Voice Mode:** Navigation and search powered by simple voice commands.
-  - **Pro Mode:** A feature-rich interface for experienced digital shoppers.
 - **Elder-friendly UI:** High legibility, simplified menus, and prominent support buttons.
 - **Icon-based Navigation:** Universal icons to help users navigate without needing to read complex labels.
 - **Multilingual Support:** Seamless switching between English and Hindi to cater to regional preferences.
@@ -56,8 +51,8 @@ ApnaBazaar is a product of deep UI/UX exploration. Our innovation lies in the **
 
 ## Tech Stack
 
-- **Frontend:** React.js / Vite
-- **Styling:** CSS (Modern Flexbox/Grid)
+- **Frontend:** Next.js
+- **Styling:** Tailwind CSS
 - **Data Handling:** JSON (Using mock data to simulate real-world e-commerce interactions)
 - **Tools:** VS Code, Git/GitHub, Chrome DevTools
 - **Note:** This is a frontend and UX-focused college project; no real backend server is required for the demonstration.
