@@ -42,8 +42,6 @@ export default function ProductGrid() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    setLoading(true);
-    setError(null);
     fetchProducts()
       .then((data) => {
         setProducts(data);

@@ -36,12 +36,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
     try {
       const saved = localStorage.getItem("apnabazaar-cart");
       if (saved) {
-        setItems(JSON.parse(saved));
+        setTimeout(() => setItems(JSON.parse(saved)), 0);
       }
     } catch {
       // ignore parse errors
     }
-    setLoaded(true);
+    setTimeout(() => setLoaded(true), 0);
   }, []);
 
   // Persist cart to localStorage on change

@@ -70,13 +70,12 @@ export default function ProductCard({ product }: ProductCardProps) {
             >
               <Heart size={16} />
             </button>
-            <Link
-              href={`/product/${product.id}`}
-              className="w-9 h-9 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-md hover:bg-blue-50 hover:text-blue-500 transition-colors"
+            <div
+              className="w-9 h-9 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-md hover:bg-blue-50 hover:text-blue-500 transition-colors cursor-pointer"
               title="Quick View"
             >
               <Eye size={16} />
-            </Link>
+            </div>
           </div>
         </div>
       </Link>

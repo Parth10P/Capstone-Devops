@@ -33,7 +33,6 @@ export default function ProductDetailPage() {
 
   useEffect(() => {
     if (!id) return;
-    setLoading(true);
     fetchProductById(id)
       .then((data) => {
         setProduct(data);
