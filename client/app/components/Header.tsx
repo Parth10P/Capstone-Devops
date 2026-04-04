@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import {
   ShoppingCart,
   Search,
@@ -10,10 +11,13 @@ import {
   Heart,
   User,
 } from "lucide-react";
+import { useCart } from "../context/CartContext";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const { getCartCount } = useCart();
+  const cartCount = getCartCount();
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b-2 border-orange-100 shadow-sm">
@@ -26,7 +30,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20 gap-4">
           {/* Logo */}
-          <div className="flex items-center gap-2 shrink-0">
+          <Link href="/" className="flex items-center gap-2 shrink-0">
             <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center text-white font-bold text-lg sm:text-xl shadow-md">
               अ
             </div>
@@ -38,7 +42,7 @@ export default function Header() {
                 Everyone&apos;s Marketplace
               </p>
             </div>
-          </div>
+          </Link>
 
           {/* Search bar */}
           <div className="flex-1 max-w-xl">
@@ -88,7 +92,8 @@ export default function Header() {
               </span>
             </button>
 
-            <button
+            <Link
+              href="/cart"
               className="relative flex flex-col items-center justify-center w-12 h-11 sm:w-16 sm:h-14 rounded-xl bg-green-50 hover:bg-green-100 border-2 border-green-200 transition-colors group"
               title="Cart"
             >
@@ -98,9 +103,9 @@ export default function Header() {
               </span>
               {/* Cart badge */}
               <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-[11px] font-bold rounded-full flex items-center justify-center shadow">
-                0
+                {cartCount}
               </span>
-            </button>
+            </Link>
 
             {/* Mobile menu toggle */}
             <button

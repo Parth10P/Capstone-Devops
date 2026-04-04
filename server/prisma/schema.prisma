@@ -11,12 +11,18 @@ datasource db {
 }
 
 model Product {
-  id          Int      @id @default(autoincrement())
-  name        String
-  description String
-  price       Float
-  image       String
-  category    String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id            Int      @id @default(autoincrement())
+  name          String
+  nameHi        String   @default("")
+  description   String
+  price         Float
+  originalPrice Float    @default(0)
+  image         String
+  category      String
+  rating        Float    @default(0)
+  reviews       Int      @default(0)
+  inStock       Boolean  @default(true)
+  badge         String   @default("")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }

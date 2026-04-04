@@ -1,70 +1,85 @@
 "use client";
 
+import Link from "next/link";
 import { Star, ShoppingCart, Heart, Eye } from "lucide-react";
-import type { Product } from "../data/products";
+import type { Product } from "../lib/api";
+import { useCart } from "../context/CartContext";
 
 interface ProductCardProps {
   product: Product;
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-  const discount = Math.round(
-    ((product.originalPrice - product.price) / product.originalPrice) * 100
-  );
+  const { addToCart } = useCart();
+  const discount =
+    product.originalPrice > 0
+      ? Math.round(
+          ((product.originalPrice - product.price) / product.originalPrice) *
+            100
+        )
+      : 0;
+
+  const categoryEmoji: Record<string, string> = {
+    clothing: "👗",
+    electronics: "📱",
+    home: "🏠",
+    grocery: "🛒",
+    beauty: "✨",
+    books: "📚",
+  };
 
   return (
     <div className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-orange-200 transition-all duration-300 overflow-hidden flex flex-col">
-      {/* Image area */}
-      <div className="relative h-52 sm:h-56 bg-gradient-to-br from-orange-50 to-amber-50 overflow-hidden">
-        {/* Placeholder image area */}
-        <div className="absolute inset-0 flex items-center justify-center text-6xl opacity-60">
-          {product.category === "clothing" && "👗"}
-          {product.category === "electronics" && "📱"}
-          {product.category === "home" && "🏠"}
-          {product.category === "grocery" && "🛒"}
-          {product.category === "beauty" && "✨"}
-          {product.category === "books" && "📚"}
-        </div>
-
-        {/* Badge */}
-        {product.badge && (
-          <span className="absolute top-3 left-3 px-2.5 py-1 bg-gradient-to-r from-orange-500 to-amber-500 text-white text-xs font-bold rounded-lg shadow-md z-10">
-            {product.badge}
-          </span>
-        )}
-
-        {/* Discount badge */}
-        {discount > 0 && (
-          <span className="absolute top-3 right-3 px-2 py-1 bg-green-500 text-white text-xs font-bold rounded-lg shadow z-10">
-            {discount}% OFF
-          </span>
-        )}
-
-        {/* Out of stock overlay */}
-        {!product.inStock && (
-          <div className="absolute inset-0 bg-black/40 flex items-center justify-center z-20">
-            <span className="px-4 py-2 bg-red-500 text-white font-bold rounded-xl text-sm">
-              Out of Stock
-            </span>
+      {/* Image area — clickable */}
+      <Link href={`/product/${product.id}`} className="block">
+        <div className="relative h-52 sm:h-56 bg-gradient-to-br from-orange-50 to-amber-50 overflow-hidden">
+          {/* Emoji placeholder */}
+          <div className="absolute inset-0 flex items-center justify-center text-6xl opacity-60">
+            {categoryEmoji[product.category] || "🛍️"}
           </div>
-        )}
 
-        {/* Hover actions */}
-        <div className="absolute bottom-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 z-10">
-          <button
-            className="w-9 h-9 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-md hover:bg-red-50 hover:text-red-500 transition-colors"
-            title="Add to Wishlist"
-          >
-            <Heart size={16} />
-          </button>
-          <button
-            className="w-9 h-9 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-md hover:bg-blue-50 hover:text-blue-500 transition-colors"
-            title="Quick View"
-          >
-            <Eye size={16} />
-          </button>
+          {/* Badge */}
+          {product.badge && (
+            <span className="absolute top-3 left-3 px-2.5 py-1 bg-gradient-to-r from-orange-500 to-amber-500 text-white text-xs font-bold rounded-lg shadow-md z-10">
+              {product.badge}
+            </span>
+          )}
+
+          {/* Discount badge */}
+          {discount > 0 && (
+            <span className="absolute top-3 right-3 px-2 py-1 bg-green-500 text-white text-xs font-bold rounded-lg shadow z-10">
+              {discount}% OFF
+            </span>
+          )}
+
+          {/* Out of stock overlay */}
+          {!product.inStock && (
+            <div className="absolute inset-0 bg-black/40 flex items-center justify-center z-20">
+              <span className="px-4 py-2 bg-red-500 text-white font-bold rounded-xl text-sm">
+                Out of Stock
+              </span>
+            </div>
+          )}
+
+          {/* Hover actions */}
+          <div className="absolute bottom-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 z-10">
+            <button
+              className="w-9 h-9 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-md hover:bg-red-50 hover:text-red-500 transition-colors"
+              title="Add to Wishlist"
+              onClick={(e) => e.preventDefault()}
+            >
+              <Heart size={16} />
+            </button>
+            <Link
+              href={`/product/${product.id}`}
+              className="w-9 h-9 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-md hover:bg-blue-50 hover:text-blue-500 transition-colors"
+              title="Quick View"
+            >
+              <Eye size={16} />
+            </Link>
+          </div>
         </div>
-      </div>
+      </Link>
 
       {/* Content */}
       <div className="p-4 flex flex-col flex-1">
@@ -73,10 +88,12 @@ export default function ProductCard({ product }: ProductCardProps) {
           {product.category}
         </span>
 
-        {/* Product name */}
-        <h3 className="text-base font-semibold text-gray-900 leading-snug mb-1 line-clamp-2 group-hover:text-orange-700 transition-colors">
-          {product.name}
-        </h3>
+        {/* Product name — clickable */}
+        <Link href={`/product/${product.id}`}>
+          <h3 className="text-base font-semibold text-gray-900 leading-snug mb-1 line-clamp-2 group-hover:text-orange-700 transition-colors">
+            {product.name}
+          </h3>
+        </Link>
 
         {/* Rating */}
         <div className="flex items-center gap-1.5 mb-2">
@@ -118,12 +135,13 @@ export default function ProductCard({ product }: ProductCardProps) {
 
           <button
             disabled={!product.inStock}
+            onClick={() => addToCart(product)}
             className={`
-              flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 shadow-sm
+              flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 shadow-sm cursor-pointer
               ${
                 product.inStock
-                  ? "bg-green-500 hover:bg-green-600 active:scale-95 text-white shadow-green-200 hover:shadow-green-300 hover:shadow-md cursor-pointer"
-                  : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                  ? "bg-green-500 hover:bg-green-600 active:scale-95 text-white shadow-green-200 hover:shadow-green-300 hover:shadow-md"
+                  : "bg-gray-200 text-gray-400 !cursor-not-allowed"
               }
             `}
           >
