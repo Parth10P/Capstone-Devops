@@ -4,11 +4,9 @@ echo "Setting up the project..."
 
 cd server
 npm i
-npm start
+nodemon src/index.js
 
 cd ../client
 npm i
 npm run dev
 
-
-echo "Project setup complete!"
