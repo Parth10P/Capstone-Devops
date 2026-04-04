@@ -61,7 +61,16 @@ jobs:
         run: npm run lint
 
       - name: Generate Prisma Client
+        env:
+          DATABASE_URL: "file:./dev.db"
         run: npx prisma generate
 
+      - name: Apply migrations
+        env:
+          DATABASE_URL: "file:./dev.db"
+        run: npx prisma migrate deploy
+
       - name: Run tests
+        env:
+          DATABASE_URL: "file:./dev.db"
         run: npm test
