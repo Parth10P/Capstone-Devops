@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  server:
+    build: ./server
+    container_name: backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./server:/app
+    environment:
+      - NODE_ENV=development
+    command: sh -c "npx prisma generate && npm start"
+
+
+  client:
+    build: ./client
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client:/app
+    stdin_open: true
+    depends_on:
+      - server

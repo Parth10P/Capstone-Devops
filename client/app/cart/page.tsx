@@ -10,13 +10,24 @@ import {
   PackageCheck,
 } from "lucide-react";
 import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
 
 export default function CartPage() {
   const { items, removeFromCart, updateQuantity, clearCart, getCartTotal } =
     useCart();
+  const { isAuthenticated, openAuthModal } = useAuth();
+  
   const total = getCartTotal();
   const deliveryFee = total >= 499 ? 0 : 49;
   const grandTotal = total + deliveryFee;
+
+  const handleCheckout = () => {
+    if (!isAuthenticated) {
+      openAuthModal();
+    } else {
+      console.log("Proceed to checkout!");
+    }
+  };
 
   if (items.length === 0) {
     return (
@@ -176,7 +187,10 @@ export default function CartPage() {
               </div>
             </div>
 
-            <button className="w-full mt-6 py-3.5 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold rounded-xl transition-all shadow-lg shadow-green-200 flex items-center justify-center gap-2 cursor-pointer">
+            <button 
+              onClick={handleCheckout}
+              className="w-full mt-6 py-3.5 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold rounded-xl transition-all shadow-lg shadow-green-200 flex items-center justify-center gap-2 cursor-pointer"
+            >
               <PackageCheck size={20} />
               Proceed to Checkout
             </button>

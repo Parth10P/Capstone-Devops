@@ -12,12 +12,23 @@ import {
   User,
 } from "lucide-react";
 import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const { getCartCount } = useCart();
+  const { user, isAuthenticated, openAuthModal, logout } = useAuth();
   const cartCount = getCartCount();
+
+  const handleProtectedAction = (e: React.MouseEvent, action: string) => {
+    e.preventDefault();
+    if (!isAuthenticated) {
+      openAuthModal();
+    } else {
+      console.log(`Action: ${action}`);
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b-2 border-orange-100 shadow-sm">
@@ -63,7 +74,7 @@ export default function Header() {
           {/* Action buttons */}
           <div className="flex items-center gap-1 sm:gap-2">
             <button
-              className="relative flex flex-col items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-xl hover:bg-orange-50 transition-colors group"
+              className="relative flex flex-col items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-xl hover:bg-orange-50 transition-colors group cursor-pointer"
               title="Help / Support"
             >
               <Phone size={22} className="text-gray-600 group-hover:text-orange-600 transition-colors" />
@@ -73,7 +84,8 @@ export default function Header() {
             </button>
 
             <button
-              className="relative flex flex-col items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-xl hover:bg-orange-50 transition-colors group"
+              onClick={(e) => handleProtectedAction(e, "Wishlist")}
+              className="relative flex flex-col items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-xl hover:bg-orange-50 transition-colors group cursor-pointer"
               title="Wishlist"
             >
               <Heart size={22} className="text-gray-600 group-hover:text-orange-600 transition-colors" />
@@ -82,15 +94,31 @@ export default function Header() {
               </span>
             </button>
 
-            <button
-              className="relative flex flex-col items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-xl hover:bg-orange-50 transition-colors group"
-              title="Account"
-            >
-              <User size={22} className="text-gray-600 group-hover:text-orange-600 transition-colors" />
-              <span className="hidden sm:block text-[10px] text-gray-500 group-hover:text-orange-600 font-medium mt-0.5">
-                Account
-              </span>
-            </button>
+            {isAuthenticated ? (
+              <button
+                onClick={logout}
+                className="relative flex flex-col items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-xl hover:bg-orange-50 transition-colors group cursor-pointer"
+                title="Logout"
+              >
+                <div className="w-6 h-6 rounded-full bg-orange-200 text-orange-700 flex items-center justify-center text-xs font-bold mb-0.5">
+                  {user?.name?.charAt(0).toUpperCase()}
+                </div>
+                <span className="hidden sm:block text-[10px] text-gray-500 group-hover:text-orange-600 font-medium mt-0.5">
+                  Logout
+                </span>
+              </button>
+            ) : (
+              <button
+                onClick={openAuthModal}
+                className="relative flex flex-col items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-xl hover:bg-orange-50 transition-colors group cursor-pointer"
+                title="Account"
+              >
+                <User size={22} className="text-gray-600 group-hover:text-orange-600 transition-colors" />
+                <span className="hidden sm:block text-[10px] text-gray-500 group-hover:text-orange-600 font-medium mt-0.5">
+                  Account
+                </span>
+              </button>
+            )}
 
             <Link
               href="/cart"

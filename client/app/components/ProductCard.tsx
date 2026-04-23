@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Star, ShoppingCart, Heart, Eye } from "lucide-react";
 import type { Product } from "../lib/api";
 import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
 
 interface ProductCardProps {
   product: Product;
@@ -11,6 +12,26 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const { addToCart } = useCart();
+  const { isAuthenticated, openAuthModal } = useAuth();
+  
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (!isAuthenticated) {
+      openAuthModal();
+    } else {
+      addToCart(product);
+    }
+  };
+
+  const handleWishlist = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (!isAuthenticated) {
+      openAuthModal();
+    } else {
+      console.log("Added to wishlist");
+    }
+  };
+
   const discount =
     product.originalPrice > 0
       ? Math.round(
@@ -64,9 +85,9 @@ export default function ProductCard({ product }: ProductCardProps) {
           {/* Hover actions */}
           <div className="absolute bottom-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 z-10">
             <button
-              className="w-9 h-9 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-md hover:bg-red-50 hover:text-red-500 transition-colors"
+              className="w-9 h-9 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-md hover:bg-red-50 hover:text-red-500 transition-colors cursor-pointer"
               title="Add to Wishlist"
-              onClick={(e) => e.preventDefault()}
+              onClick={handleWishlist}
             >
               <Heart size={16} />
             </button>
@@ -134,7 +155,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
           <button
             disabled={!product.inStock}
-            onClick={() => addToCart(product)}
+            onClick={handleAddToCart}
             className={`
               flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 shadow-sm cursor-pointer
               ${
@@ -146,6 +167,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           >
             <ShoppingCart size={18} />
             <span className="hidden sm:inline">Add</span>
+
           </button>
         </div>
       </div>
