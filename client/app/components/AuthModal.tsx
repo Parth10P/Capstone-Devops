@@ -22,7 +22,7 @@ export default function AuthModal() {
     setLoading(true);
 
     try {
-      const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5002/api";
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || "/api";
       const endpoint = isLogin ? "/auth/login" : "/auth/register";
       const payload = isLogin ? { email, password } : { name, email, password };
 

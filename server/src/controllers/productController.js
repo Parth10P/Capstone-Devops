@@ -16,7 +16,7 @@ exports.getProductById = async (req, res) => {
   try {
     const { id } = req.params;
     const product = await prisma.product.findUnique({
-      where: { id: parseInt(id) },
+      where: { id },
     });
     if (!product) return res.status(404).json({ message: "Product not found" });
     res.json(product);
@@ -44,7 +44,7 @@ exports.updateProduct = async (req, res) => {
     const { id } = req.params;
     const { name, description, price, image, category } = req.body;
     const product = await prisma.product.update({
-      where: { id: parseInt(id) },
+      where: { id },
       data: {
         name,
         description,
@@ -64,7 +64,7 @@ exports.deleteProduct = async (req, res) => {
   try {
     const { id } = req.params;
     await prisma.product.delete({
-      where: { id: parseInt(id) },
+      where: { id },
     });
     res.status(204).send();
   } catch (error) {

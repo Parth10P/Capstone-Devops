@@ -18,8 +18,8 @@ export interface CartItem {
 interface CartContextType {
   items: CartItem[];
   addToCart: (product: Product) => void;
-  removeFromCart: (productId: number) => void;
-  updateQuantity: (productId: number, quantity: number) => void;
+  removeFromCart: (productId: string) => void;
+  updateQuantity: (productId: string, quantity: number) => void;
   clearCart: () => void;
   getCartTotal: () => number;
   getCartCount: () => number;
@@ -65,11 +65,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
-  const removeFromCart = useCallback((productId: number) => {
+  const removeFromCart = useCallback((productId: string) => {
     setItems((prev) => prev.filter((item) => item.product.id !== productId));
   }, []);
 
-  const updateQuantity = useCallback((productId: number, quantity: number) => {
+  const updateQuantity = useCallback((productId: string, quantity: number) => {
     if (quantity <= 0) {
       setItems((prev) => prev.filter((item) => item.product.id !== productId));
       return;

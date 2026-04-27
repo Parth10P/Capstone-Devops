@@ -1,7 +1,7 @@
 const API_BASE = "/api";
 
 export interface Product {
-  id: number;
+  id: string;
   name: string;
   nameHi: string;
   description: string;
@@ -23,7 +23,7 @@ export async function fetchProducts(): Promise<Product[]> {
   return res.json();
 }
 
-export async function fetchProductById(id: number): Promise<Product> {
+export async function fetchProductById(id: string): Promise<Product> {
   const res = await fetch(`${API_BASE}/products/${id}`, { cache: "no-store" });
   if (!res.ok) throw new Error("Failed to fetch product");
   return res.json();

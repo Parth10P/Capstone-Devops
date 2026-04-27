@@ -1,5 +1,5 @@
 export interface Product {
-  id: number;
+  id: string;
   name: string;
   nameHi: string;
   price: number;
@@ -25,7 +25,7 @@ export const categories = [
 
 export const products: Product[] = [
   {
-    id: 1,
+    id: "1",
     name: "Cotton Kurti - Floral Print",
     nameHi: "कॉटन कुर्ती - फ्लोरल प्रिंट",
     price: 499,
@@ -39,7 +39,7 @@ export const products: Product[] = [
     badge: "Bestseller",
   },
   {
-    id: 2,
+    id: "2",
     name: "Wireless Earbuds",
     nameHi: "वायरलेस ईयरबड्स",
     price: 799,
@@ -53,7 +53,7 @@ export const products: Product[] = [
     badge: "60% Off",
   },
   {
-    id: 3,
+    id: "3",
     name: "Stainless Steel Lunch Box",
     nameHi: "स्टेनलेस स्टील लंच बॉक्स",
     price: 349,
@@ -66,7 +66,7 @@ export const products: Product[] = [
     inStock: true,
   },
   {
-    id: 4,
+    id: "4",
     name: "Organic Toor Dal - 1kg",
     nameHi: "ऑर्गेनिक तूर दाल - 1 किलो",
     price: 189,
@@ -80,7 +80,7 @@ export const products: Product[] = [
     badge: "Fresh",
   },
   {
-    id: 5,
+    id: "5",
     name: "Aloe Vera Face Wash",
     nameHi: "एलोवेरा फेस वॉश",
     price: 199,
@@ -93,7 +93,7 @@ export const products: Product[] = [
     inStock: true,
   },
   {
-    id: 6,
+    id: "6",
     name: "Hindi Story Book Collection",
     nameHi: "हिंदी कहानी पुस्तक संग्रह",
     price: 299,
@@ -107,7 +107,7 @@ export const products: Product[] = [
     badge: "Popular",
   },
   {
-    id: 7,
+    id: "7",
     name: "Men's Polo T-Shirt",
     nameHi: "पुरुषों की पोलो टी-शर्ट",
     price: 599,
@@ -121,7 +121,7 @@ export const products: Product[] = [
     badge: "54% Off",
   },
   {
-    id: 8,
+    id: "8",
     name: "Power Bank 10000mAh",
     nameHi: "पावर बैंक 10000mAh",
     price: 699,
@@ -134,7 +134,7 @@ export const products: Product[] = [
     inStock: true,
   },
   {
-    id: 9,
+    id: "9",
     name: "Brass Pooja Thali Set",
     nameHi: "पीतल की पूजा थाली सेट",
     price: 899,
@@ -148,7 +148,7 @@ export const products: Product[] = [
     badge: "Handmade",
   },
   {
-    id: 10,
+    id: "10",
     name: "Basmati Rice Premium - 5kg",
     nameHi: "बासमती चावल प्रीमियम - 5 किलो",
     price: 549,
@@ -161,7 +161,7 @@ export const products: Product[] = [
     inStock: true,
   },
   {
-    id: 11,
+    id: "11",
     name: "Coconut Hair Oil - 200ml",
     nameHi: "नारियल हेयर ऑयल - 200ml",
     price: 149,
@@ -174,7 +174,7 @@ export const products: Product[] = [
     inStock: true,
   },
   {
-    id: 12,
+    id: "12",
     name: "Motivational Books Set",
     nameHi: "प्रेरणादायक पुस्तक सेट",
     price: 450,

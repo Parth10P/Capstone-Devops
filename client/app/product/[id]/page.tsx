@@ -22,7 +22,7 @@ import { useCart } from "../../context/CartContext";
 
 export default function ProductDetailPage() {
   const params = useParams();
-  const id = Number(params.id);
+  const id = Array.isArray(params.id) ? params.id[0] : params.id;
   const { addToCart } = useCart();
 
   const [product, setProduct] = useState<Product | null>(null);

@@ -7,12 +7,12 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model Product {
-  id            Int      @id @default(autoincrement())
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
   name          String
   nameHi        String   @default("")
   description   String
@@ -29,7 +29,7 @@ model Product {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   name      String
   email     String   @unique
   password  String
