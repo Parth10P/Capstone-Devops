@@ -45,8 +45,10 @@ export default function AuthModal() {
       setName("");
       setEmail("");
       setPassword("");
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      const message =
+        err instanceof Error ? err.message : "Something went wrong";
+      setError(message);
     } finally {
       setLoading(false);
     }
