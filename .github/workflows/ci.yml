@@ -33,8 +33,14 @@ jobs:
       run:
         working-directory: ./server
 
+    services:
+      mongo:
+        image: mongo:7
+        ports:
+          - 27017:27017
+
     env:
-      DATABASE_URL: "file:./dev.db"
+      DATABASE_URL: "mongodb://127.0.0.1:27017/capstone_test"
 
     steps:
       - uses: actions/checkout@v4
@@ -46,5 +52,4 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npx prisma generate
-      - run: npx prisma migrate deploy
       - run: npm test
