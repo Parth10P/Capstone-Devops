@@ -8,6 +8,6 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 5173
+EXPOSE 3000
 
-CMD ["npx", "next", "dev", "-H", "0.0.0.0", "-p", "3000"]
+CMD ["npm", "run", "dev"]
